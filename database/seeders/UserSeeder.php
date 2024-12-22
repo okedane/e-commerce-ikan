@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'superadmin@gmail.com',
-            'password' => Hash::make('12345678'), // Hash password
+            'password' => Hash::make('12345678'), 
             'role' => 'admin',
         ]);
 
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
         // Buat data customer yang terhubung dengan user di atas
         Customer::create([
             'id_user' => $user->id, // Relasi ke tabel users
-            'alamat' => '123 Customer Street, City', // Alamat pelanggan
+            'alamat' => '123  Customer Street, City', // Alamat pelanggan
             'no_hp' => '081234567890', // Nomor HP pelanggan
         ]);
     }

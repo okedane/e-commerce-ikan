@@ -46,14 +46,14 @@ class RegisterController extends Controller
         // Simpan data customer terkait user
         Customer::create([
             'id_user' => $user->id,
-            'alamat' => $request->address,
-            'no_hp' => $request->phone,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
         ]);
 
         // Login otomatis setelah pendaftaran
         Auth::login($user);
 
         // Redirect ke halaman dashboard customer
-        return redirect()->route('customer.dashboard');
+        return redirect()->route('dashboard.home');
     }
 }

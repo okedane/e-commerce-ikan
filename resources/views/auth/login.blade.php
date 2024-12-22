@@ -26,7 +26,7 @@
             <div class="d-flex align-items-stretch flex-wrap">
                 <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
                     <div class="m-3 p-4">
-                        <img src="{{ asset('img/aa.svg') }}" alt="logo" width="80"
+                        <img src="{{ asset('img/stisla-light.svg') }}" alt="logo" width="80"
                             class="shadow-light rounded-circle mb-5 mt-2">
                         <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Aquavibes</span>
                         </h4>
@@ -43,7 +43,8 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                        <form method="POST" action="#" class="needs-validation"
+
+                        <form method="POST" action="{{ route('login-proses') }}" class="needs-validation"
                             novalidate="">
                             @csrf
                             <div class="form-group">
@@ -91,7 +92,7 @@
                             </div>
 
                             <div class="text-center mt-3">
-                                <p>Belum punya akun? <a href="#" class="btn btn-link">Daftar Sekarang</a></p>
+                                <p>Belum punya akun? <a href="{{ route('register') }}" class="btn btn-link">Daftar Sekarang</a></p>
                             </div>
 
 
@@ -108,7 +109,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-12 order-lg-2 min-vh-100 background-walk-y position-relative overlay-gradient-bottom order-1"
-                    data-background="{{ asset('img/unsplash/new.jpg') }}">
+                    data-background="{{ asset('img/unsplash/Aquavibes.png') }}">
                     <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
                             <div class="mb-5 pb-3">

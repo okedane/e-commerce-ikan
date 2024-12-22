@@ -12,8 +12,8 @@
             <div class="section-header">
                 <h1>Form Data Produk</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Forms</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                    {{-- <div class="breadcrumb-item"><a href="{{ route('produk.index') }}">Form Produk</a></div> --}}
                     <div class="breadcrumb-item">Form Validation</div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-primary" type="submit">Simpan</button>
-                            {{-- <a class="btn btn-danger" href="{{ route('produk.index', $kategori->id_kategori) }}">Batal</a> --}}
+                            {{-- <a class="btn btn-danger" href="{{ route('produk.index') }}">Batal</a> --}}
                         </div>
                     </div>
                 </form>

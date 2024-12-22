@@ -18,19 +18,24 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Checkout Section Begin -->
-    <section class="checkout spad" >
+    <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <div >
+                <div>
                     <div class="checkout__order">
                         <h4>Your Order</h4>
-                        <div class="checkout__order__products">Products <span>Total</span></div>
+                        <div class="checkout__order__products">Products <span>Stock</span></div>
                         <ul>
-                            <li>{{ $produk->nama_produk }}<span>{{ $produk->harga }}</span></li>
+                            <li>{{ $produk->nama_produk }}<span>{{ $produk->stock }}</span></li>
                         </ul>
                         <div class="checkout__order__subtotal">Subtotal <span>{{ $produk->harga }}</span></div>
                         <p>Pembayaran COD</p>
-                        <button type="submit" class="site-btn">ORDER</button>
+                        <form action="{{ route('produk.checkout', $produk->id) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id_kategori" value="{{ $produk->id_kategori }}">
+                            <button type="submit" class="site-btn">ORDER</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

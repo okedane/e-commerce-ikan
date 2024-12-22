@@ -30,11 +30,6 @@
                         <div class="product__details__price">{{ $item->harga }}</div>
                         <p>{{ $item->deskripsi }}</p>
                         <a href="{{ route('checkout', $item->id) }}" class="primary-btn">ORDER</a>
-                        <ul>
-                            <li><b>Availability</b> <span>In Stock</span></li>
-                            <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                            <li><b>Weight</b> <span>0.5 kg</span></li>
-                        </ul>
                     </div>
                 </div>
             </div>

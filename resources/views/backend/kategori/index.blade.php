@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Wisata')
+@section('title', 'Ikan')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -13,7 +13,7 @@
             <div class="section-header">
                 <h1>Kategori</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="/dashboard">Dashboard</a>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a>
                     </div>
                     <div class="breadcrumb-item"><a href="">Produk</a></div>
                 </div>
@@ -46,6 +46,9 @@
                                                 <td>{{$ktg->nama_kategori}}</td>
                                                 <td>
                                                     <div class="d-flex justify-content">
+                                                        <a href="{{route('produk.index', $ktg->id)}}" class="btn btn-success btn-icon mr-2">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                        </a>
                                                         <a href="{{ route('kategori.edit', $ktg->id) }}" class="btn  btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
@@ -57,9 +60,7 @@
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </form>
-                                                        <a href="{{route('produk.index', $ktg->id)}}" class="btn  btn-info btn-icon">
-                                                            <i class="fa-solid fa-eye"></i>
-                                                        </a>
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>

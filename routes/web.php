@@ -6,6 +6,9 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Middleware\UserAkses;
+use App\Models\transaksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,34 +33,40 @@ Route::middleware(['guest'])->group(function () {
 Route::get('/home', function () {
     return redirect()->route('dashboard');
 });
-Route::middleware(['auth'])->group(function () {
-    // Frontend
-    Route::get('/', [homeController::class, 'index'])->name('dashboard.home');
-    Route::get('contact', [homeController::class, 'contact'])->name('contact');
-    Route::get('all-product', [homeController::class, 'all_product'])->name('all.product');
-    Route::get('shop-details/{id}', [homeController::class, 'shopdetails'])->name('shop.details');
-    Route::get('checkout/{id}', [homeController::class, 'checkout'])->name('checkout');
-    Route::get('shop/{id}', [homeController::class, 'shop'])->name('shop');
 
-    // Route::get('/', [homeController::class, 'shopdetails'])->name('shop.details');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    // Frontend
+    Route::get('/dashboard', [homeController::class, 'index'])->name('dashboard.home')->middleware('userAkses:customer');
+    Route::get('contact', [homeController::class, 'contact'])->name('contact')->middleware('userAkses:customer');
+    Route::get('all-product', [homeController::class, 'all_product'])->name('all.product')->middleware('userAkses:customer');
+    Route::get('shop-details/{id}', [homeController::class, 'shopdetails'])->name('shop.details')->middleware('userAkses:customer');
+    Route::get('shop/{id}', [homeController::class, 'shop'])->name('shop')->middleware('userAkses:customer');
+
+    // transaksi
+    Route::get('checkout/{id}', [homeController::class, 'checkout'])->name('checkout')->middleware('userAkses:customer');
+    Route::post('proses-co/{id}', [homeController::class, 'action_co'])->name('produk.checkout')->middleware('userAkses:customer');
 
 
     //backend 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard/admin', [DashboardController::class, 'index'])->name('dashboard')->middleware('userAkses:admin');
 
     // kategori
-    Route::get('kategori/index', [KategoriController::class, 'index'])->name('kategori.index');
-    Route::get('kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
-    Route::post('post/masukan-data', [KategoriController::class, 'action_create'])->name('kategori.action_create');
-    Route::get('kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
-    Route::put('put/edit-data/{id}', [KategoriController::class, 'action_edit'])->name('kategori.action_edit');
-    Route::delete('delete/edit-data/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
+    Route::get('kategori/index', [KategoriController::class, 'index'])->name('kategori.index')->middleware('userAkses:admin');
+    Route::get('kategori/create', [KategoriController::class, 'create'])->name('kategori.create')->middleware('userAkses:admin');
+    Route::post('post/masukan-data', [KategoriController::class, 'action_create'])->name('kategori.action_create')->middleware('userAkses:admin');
+    Route::get('kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit')->middleware('userAkses:admin');
+    Route::put('put/edit-data/{id}', [KategoriController::class, 'action_edit'])->name('kategori.action_edit')->middleware('userAkses:admin');
+    Route::delete('delete/edit-data/{id}', [KategoriController::class, 'delete'])->name('kategori.delete')->middleware('userAkses:admin');
 
     // produk
-    Route::get('produk/index/{id}', [ProdukController::class, 'index'])->name('produk.index');
-    Route::get('produk/create/{id}', [ProdukController::class, 'create'])->name('produk.create');
-    Route::post('store/product', [ProdukController::class, 'action_create'])->name('produk.action_create');
-    Route::get('produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
-    Route::put('produk/edit-produk/{id}', [ProdukController::class, 'action_edit'])->name('produk.action_edit');
-    Route::delete('delete/produk/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
+    Route::get('produk/index/{id}', [ProdukController::class, 'index'])->name('produk.index')->middleware('userAkses:admin');
+    Route::get('produk/create/{id}', [ProdukController::class, 'create'])->name('produk.create')->middleware('userAkses:admin');
+    Route::post('store/product', [ProdukController::class, 'action_create'])->name('produk.action_create')->middleware('userAkses:admin');
+    Route::get('produk/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit')->middleware('userAkses:admin');
+    Route::put('produk/edit-produk/{id}', [ProdukController::class, 'action_edit'])->name('produk.action_edit')->middleware('userAkses:admin');
+    Route::delete('delete/produk/{id}', [ProdukController::class, 'delete'])->name('produk.delete')->middleware('userAkses:admin');
+     //transaksi
+    Route::get('transaksi/index', [TransaksiController::class, 'index'])->name('produk.transaksi')->middleware('userAkses:admin');
+    
 });

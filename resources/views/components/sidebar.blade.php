@@ -7,7 +7,7 @@
             <a href="index.html">DK</a>
         </div>
         <div class="hide-sidebar-mini mt-4 mb-4 p-3">
-            <a href="/dashboard" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Dashboard
             </a>
         </div>
@@ -23,10 +23,10 @@
             </li>
             <li class="nav-item dropdown ">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
-                    <span>karyawan</span></a>
+                    <span>Transakisi</span></a>
                 <ul class="dropdown-menu">
                     <li class="">
-                        <a class="nav-link" href="/karyawan/index">Data Karyawan</a>
+                        <a class="nav-link" href="{{ route('produk.transaksi') }}">Transaksi</a>
                     </li>
                 </ul>
             </li>

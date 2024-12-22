@@ -1,4 +1,4 @@
-@extends('frontend.layout')
+@extends('auth.layout.layout')
 
 @section('content')
     <div class="container mt-5">
@@ -42,14 +42,13 @@
 
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" name="address" class="form-control" value="{{ old('address') }}" required>
+                            <input type="text" name="alamat" class="form-control" value="{{ old('alamat') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" required>
+                            <input type="text" name="no_hp" class="form-control" value="{{ old('no_hp') }}" required>
                         </div>
-
                         <button type="submit" class="btn btn-primary w-100">Register</button>
                     </form>
                 </div>
