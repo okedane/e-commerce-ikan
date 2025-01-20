@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class homeController extends Controller
 {
+    //melihat
     public function index(){
         $kategori = kategori::get();
         $allproduct = produk::all();
@@ -24,6 +25,7 @@ class homeController extends Controller
         return view('frontend.allproduct', compact('allproduct'));
     }
 
+    //detil produts
     public function shopdetails($id){
         $item = produk::findOrFail($id);
         return view('frontend.shopdetails', compact('item'));
@@ -35,6 +37,7 @@ class homeController extends Controller
         return view('frontend.shop', compact('produk', 'kategori'));
     }
 
+    //co
     public function checkout($id){
         $produk = produk::findOrfail($id);
         return view('frontend.checkout', compact('produk'));

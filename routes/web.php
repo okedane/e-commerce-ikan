@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
@@ -68,5 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('delete/produk/{id}', [ProdukController::class, 'delete'])->name('produk.delete')->middleware('userAkses:admin');
      //transaksi
     Route::get('transaksi/index', [TransaksiController::class, 'index'])->name('produk.transaksi')->middleware('userAkses:admin');
+    Route::get('generate-pdf', [PdfController::class, 'generatePDF'])->name('generate-pdf')->middleware('userAkses:admin');
+
     
 });
